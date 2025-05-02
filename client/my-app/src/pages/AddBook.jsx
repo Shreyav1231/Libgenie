@@ -16,7 +16,7 @@ const AddBook = () => {
   useEffect(() => {
     const fetchAuthors = async () => {
       try {
-        const response = await axios.get("http://localhost:5174/author"); // Adjust API endpoint as needed
+        const response = await axios.get("http://localhost:5174/api/author"); // Adjust API endpoint as needed
         setAuthors(response.data); // Assuming response data is an array of { author_id, author_name }
       } catch (err) {
         console.error("Error fetching authors:", err);
@@ -31,7 +31,7 @@ const AddBook = () => {
     setError(null);
 
     try {
-      const response = await axios.post("http://localhost:5174/books", {
+      const response = await axios.post("http://localhost:5174/api/books", {
         book_name: bookName,
         genre: genre,
         author_id: authorId,

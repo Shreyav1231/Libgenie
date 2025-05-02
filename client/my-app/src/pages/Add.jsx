@@ -18,30 +18,51 @@ const Add = () => {
 
   const navigate = useNavigate();
   
+  // const handleClickAuthor = async (e) => {
+  //   e.preventDefault();
+  
+  //   const newAuthor = {
+  //     // author_id: author.author_id,  // Ensure this value is included
+  //     author_name: author.author_name,
+  //     age: parseInt(author.age, 10),
+  //   };
+  
+  //   console.log("Sending data to backend:", newAuthor);
+  
+  //   try {
+  //     const response = await axios.post("http://localhost:5174/api/author", newAuthor);
+  //     console.log("Response from backend:", response.data);
+  
+  //     // After adding the author, fetch the updated list of authors
+  //     // fetchAllAuthors();  // Call your function to fetch authors and update the state
+  
+  //     navigate("/author");  // Navigate to the author list page after success
+  //   } catch (err) {
+  //     console.log("Error:", err);
+  //   }
+  // };
+  
   const handleClickAuthor = async (e) => {
     e.preventDefault();
   
+    if (!author.author_name || !author.age) {
+      console.error("Author name and age are required");
+      return;
+    }
+  
     const newAuthor = {
-      // author_id: author.author_id,  // Ensure this value is included
       author_name: author.author_name,
       age: parseInt(author.age, 10),
     };
   
-    console.log("Sending data to backend:", newAuthor);
-  
     try {
-      const response = await axios.post("http://localhost:5174/author", newAuthor);
+      const response = await axios.post("http://localhost:5174/api/author", newAuthor);
       console.log("Response from backend:", response.data);
-  
-      // After adding the author, fetch the updated list of authors
-      // fetchAllAuthors();  // Call your function to fetch authors and update the state
-  
-      navigate("/author");  // Navigate to the author list page after success
+      navigate("/author");
     } catch (err) {
-      console.log("Error:", err);
+      console.error("Error adding author:", err.response?.data || err.message);
     }
   };
-  
 
   console.log(author);
 
