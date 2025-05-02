@@ -17,7 +17,7 @@ const EditAuthor = () => {
     const fetchAuthors = async () => {
       try {
         setLoading(true);
-        const res = await axios.get("http://localhost:5174/author");
+        const res = await axios.get("http://localhost:5174/api/author");
         setAuthors(res.data);
         setLoading(false);
       } catch (err) {
@@ -39,7 +39,7 @@ const EditAuthor = () => {
       }
       
       try {
-        const res = await axios.get(`http://localhost:5174/author/${selectedAuthorId}`);
+        const res = await axios.get(`http://localhost:5174/api/author/${selectedAuthorId}`);
         setAuthor(res.data);
       } catch (err) {
         console.error("Error fetching author details:", err);
@@ -69,7 +69,7 @@ const EditAuthor = () => {
     }
     
     try {
-      await axios.put(`http://localhost:5174/author/${selectedAuthorId}`, author);
+      await axios.put(`http://localhost:5174/api/author/${selectedAuthorId}`, author);
       setNotification({ message: "Author updated successfully!", type: "success" });
       
       // Optional: Automatically navigate after short delay
