@@ -1,2 +1,1 @@
-# Libgenie
-CS348 final project
+Final project for CS348 - Information Systems
